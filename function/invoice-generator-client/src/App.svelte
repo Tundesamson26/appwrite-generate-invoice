@@ -1,13 +1,25 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  
 </script>
 
 <main>
-  <div>
-    <h1>Svelte + Vite</h1>
-  </div>
+  <!-- header section -->
+  <header>
+    <div>
+      <h1>Invoice</h1>
+    </div>
+    <div>
+      <ul>
+        <li>Print</li>
+        <li>Download</li>
+        <li>Send</li>
+      </ul>
+    </div>
+  </header>
+  <!-- your details section -->
+  <section>
+    <input type="text" name="" id="">
+  </section>
 </main>
 
 <style>
