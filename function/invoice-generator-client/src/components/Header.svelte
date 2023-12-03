@@ -1,4 +1,6 @@
-<script></script>
+<script>
+   export let handlePrint;
+</script>
 
 <header
   class="flex flex-col items-center justify-center mb-5 xl:flex-row xl:justify-between"
@@ -8,7 +10,7 @@
   </div>
   <div>
     <ul class="flex flex-wrap items-center justify-between">
-      <li><button class="btn btn-print">Print</button></li>
+      <li><button type="button" class="btn btn-print" on:click={handlePrint}>Print</button></li>
       <li><button class="btn btn-download">Download</button></li>
       <li><button class="btn btn-send">Send</button></li>
     </ul>
