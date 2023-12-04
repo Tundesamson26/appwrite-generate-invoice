@@ -28,6 +28,7 @@
   const quantity = writable("");
   const price = writable("");
   const amount = writable("");
+  const list = writable([]);
 
   const handlePrint = () => {
     window.print();
@@ -55,7 +56,7 @@
       <MainDetails {name} {address} />
       <ClientDetails {clientName} {clientAddress} />
       <Dates {invoiceNumber} {invoiceDate} {dueDate} />
-      <Table {description} {quantity} {price} {amount}/>
+      <Table {list} />
       <Notes {notes} />
       <Footer
         {name}
@@ -229,7 +230,7 @@
 
         <!-- this is our table form  -->
         <article>
-          <TableForm {description} {quantity} {price} {amount}/>
+          <TableForm {description} {quantity} {price} {amount} {list}/>
         </article>
 
         <label for="notes">Additional Notes</label>
