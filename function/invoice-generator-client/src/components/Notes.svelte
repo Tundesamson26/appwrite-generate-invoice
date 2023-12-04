@@ -1,6 +1,8 @@
-<script></script>
+<script>
+  export let notes;
+</script>
 
 <section class="mb-5">
   <!-- Textareas -->
-  <p>Note to the client</p>
+  <p class="lg:w-1/2 text-justify">{$notes}</p>
 </section>
