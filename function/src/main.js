@@ -16,9 +16,10 @@ import { createPdf } from './pdf.js';
 
 export default async ({ res, req, log }) => {
 
+  log(req.body)
+  
   const pdfBuffer = await createPdf(req.body);
 
-  log(req.body)
   // log('PDF created.');
   
 
