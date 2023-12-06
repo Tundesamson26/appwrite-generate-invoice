@@ -18,8 +18,9 @@ export default async ({ res, req, log }) => {
 
   const pdfBuffer = await createPdf(req.body);
 
-  log('PDF created.');
   log(req.body)
+  // log('PDF created.');
+  
 
   return res.send(pdfBuffer, 200, { 'Content-Type': 'application/pdf' });
   // return res.send(req.body)
