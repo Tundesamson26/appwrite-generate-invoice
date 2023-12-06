@@ -14,15 +14,15 @@
 import { createPdf } from './pdf.js';
 // import { Buffer } from 'node:buffer';
 
-export default async ({ res, req, log }) => {
+export default async ({ res, req, log, error }) => {
 
   log(req.body)
-  
-  const pdfBuffer = await createPdf(req.body);
+
+  // const pdfBuffer = await createPdf(req.body);
 
   // log('PDF created.');
   
 
-  return res.send(pdfBuffer, 200, { 'Content-Type': 'application/pdf' });
-  // return res.send(req.body)
+  // return res.send(pdfBuffer, 200, { 'Content-Type': 'application/pdf' });
+  return res.send(req.body)
 };
