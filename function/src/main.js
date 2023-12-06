@@ -15,14 +15,13 @@ import { createPdf } from './pdf.js';
 // import { generateFakeOrder } from './faker.js';
 // import { Buffer } from 'node:buffer';
 
-export default async ({ res, req, log, data }) => {
-  log(req.body)
-  return res.send(req.body)
-
+export default async ({ res, req, log }) => {
 
   const pdfBuffer = await createPdf(req.body);
 
   log('PDF created.');
+    // log(req.body)
 
   return res.send(pdfBuffer, 200, { 'Content-Type': 'application/pdf' });
+  // return res.send(req.body)
 };
