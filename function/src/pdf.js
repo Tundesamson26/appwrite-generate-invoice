@@ -1,112 +1,114 @@
-// import { PDFDocument } from 'pdf-lib';
-// import { Buffer } from 'node:buffer';
-
-// export async function createPdf({ id, date, name, items, total }) {
-//   const document = await PDFDocument.create();
-//   const page = document.addPage([595.28, 841.89]); // A4 size
-
-//   page.drawText('Sample Invoice', { x: 50, y: 750, size: 20 });
-//   page.drawText(new Date(date).toLocaleDateString(), {
-//     x: 400,
-//     y: 750,
-//     size: 15,
-//   });
-
-//   page.drawText(`Hello, ${name}!`, {
-//     x: 50,
-//     y: 700,
-//     size: 30,
-//   });
-
-//   page.drawText(`Order ID: ${id}`, {
-//     x: 50,
-//     y: 650,
-//     size: 10,
-//   });
-
-//   page.drawText(`Total: $${total}`, { x: 50, y: 600, size: 15 });
-
-//   const orderList = items
-//     .map(
-//       ({ description, quantity, cost }) =>
-//         `${description} x ${quantity} = $${cost}`
-//     )
-//     .join('\n');
-
-//   page.drawText(orderList, { x: 50, y: 550, size: 15 });
-
-//   const pdfBytes = await document.save();
-
-//   return Buffer.from(pdfBytes);
-// }
-
 import { PDFDocument } from 'pdf-lib';
 import { Buffer } from 'node:buffer';
 
-export async function createPdf({
-  name,
-  address,
-  email,
-  phone,
-  bankName,
-  bankAccount,
-  website,
-  clientName,
-  clientAddress,
-  invoiceNumber,
-  invoiceDate,
-  dueDate,
-  notes,
-  list,
-}) {
+export async function createPdf({ id, date, name, items, total }) {
   const document = await PDFDocument.create();
   const page = document.addPage([595.28, 841.89]); // A4 size
 
   page.drawText('Sample Invoice', { x: 50, y: 750, size: 20 });
-  page.drawText(new Date(invoiceDate).toLocaleDateString(), {
+  page.drawText(new Date(date).toLocaleDateString(), {
     x: 400,
     y: 750,
     size: 15,
   });
 
-  page.drawText(`Hello, ${clientName}!`, {
+  page.drawText(`Hello, ${name}!`, {
     x: 50,
     y: 700,
     size: 30,
   });
 
-  page.drawText(`Invoice Number: ${invoiceNumber}`, {
+  page.drawText(`Order ID: ${id}`, {
     x: 50,
     y: 650,
-    size: 15,
+    size: 10,
   });
 
-  // Display client details
-  page.drawText(`Client Name: ${name}`, { x: 50, y: 620, size: 15 });
-  page.drawText(`Client Address: ${address}`, { x: 50, y: 600, size: 15 });
-  page.drawText(`Client Email: ${email}`, { x: 50, y: 580, size: 15 });
-  page.drawText(`Client Phone: ${phone}`, { x: 50, y: 560, size: 15 });
+  page.drawText(`Total: $${total}`, { x: 50, y: 600, size: 15 });
 
-  // Display items
-  let yOffset = 530; // Initial y-coordinate for items
-  for (const item of list) {
-    const itemText = `${item.description} x ${item.quantity} = $${item.amount}`;
-    page.drawText(itemText, { x: 50, y: yOffset, size: 15 });
-    yOffset -= 20; // Adjust the y-coordinate for the next item
-  }
+  const orderList = items
+    .map(
+      ({ description, quantity, cost }) =>
+        `${description} x ${quantity} = $${cost}`
+    )
+    .join('\n');
 
-  // Display total
-  page.drawText(`Total: $${list.reduce((acc, item) => acc + item.amount, 0)}`, {
-    x: 50,
-    y: yOffset - 20,
-    size: 15,
-  });
-
-  // Display additional notes
-  page.drawText('Additional Notes:', { x: 50, y: yOffset - 50, size: 15 });
-  page.drawText(notes, { x: 50, y: yOffset - 70, size: 15 });
+  page.drawText(orderList, { x: 50, y: 550, size: 15 });
 
   const pdfBytes = await document.save();
 
   return Buffer.from(pdfBytes);
 }
+
+
+
+// import { PDFDocument } from 'pdf-lib';
+// import { Buffer } from 'node:buffer';
+
+// export async function createPdf({
+//   name,
+//   address,
+//   email,
+//   phone,
+//   bankName,
+//   bankAccount,
+//   website,
+//   clientName,
+//   clientAddress,
+//   invoiceNumber,
+//   invoiceDate,
+//   dueDate,
+//   notes,
+//   list,
+// }) {
+//   const document = await PDFDocument.create();
+//   const page = document.addPage([595.28, 841.89]); // A4 size
+
+//   page.drawText('Sample Invoice', { x: 50, y: 750, size: 20 });
+//   page.drawText(new Date(invoiceDate).toLocaleDateString(), {
+//     x: 400,
+//     y: 750,
+//     size: 15,
+//   });
+
+//   page.drawText(`Hello, ${clientName}!`, {
+//     x: 50,
+//     y: 700,
+//     size: 30,
+//   });
+
+//   page.drawText(`Invoice Number: ${invoiceNumber}`, {
+//     x: 50,
+//     y: 650,
+//     size: 15,
+//   });
+
+//   // Display client details
+//   page.drawText(`Client Name: ${name}`, { x: 50, y: 620, size: 15 });
+//   page.drawText(`Client Address: ${address}`, { x: 50, y: 600, size: 15 });
+//   page.drawText(`Client Email: ${email}`, { x: 50, y: 580, size: 15 });
+//   page.drawText(`Client Phone: ${phone}`, { x: 50, y: 560, size: 15 });
+
+//   // Display items
+//   let yOffset = 530; // Initial y-coordinate for items
+//   for (const item of list) {
+//     const itemText = `${item.description} x ${item.quantity} = $${item.amount}`;
+//     page.drawText(itemText, { x: 50, y: yOffset, size: 15 });
+//     yOffset -= 20; // Adjust the y-coordinate for the next item
+//   }
+
+//   // Display total
+//   page.drawText(`Total: $${list.reduce((acc, item) => acc + item.amount, 0)}`, {
+//     x: 50,
+//     y: yOffset - 20,
+//     size: 15,
+//   });
+
+//   // Display additional notes
+//   page.drawText('Additional Notes:', { x: 50, y: yOffset - 50, size: 15 });
+//   page.drawText(notes, { x: 50, y: yOffset - 70, size: 15 });
+
+//   const pdfBytes = await document.save();
+
+//   return Buffer.from(pdfBytes);
+// }
