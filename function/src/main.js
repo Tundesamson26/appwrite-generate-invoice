@@ -16,7 +16,7 @@ import { generateFakeOrder } from './faker.js';
 import { Buffer } from 'node:buffer';
 
 export default async ({ res, req, log, data }) => {
-  log(req.body)
+  return log(req.body)
   // const {
   //   name,
   //   address,
