@@ -19,7 +19,7 @@ export async function createPdf({ name,
   const page = document.addPage([595.28, 841.89]); // A4 size
   const { width, height } = page.getSize()
   const fontSize = 30
-  const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+  const timesRomanFont = await pdfBytes.embedFont(StandardFonts.TimesRoman)
 
   page.drawText(`Hello, ${name}!`, {
     x: 50,
