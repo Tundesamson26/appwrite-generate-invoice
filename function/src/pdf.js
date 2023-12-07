@@ -20,27 +20,27 @@ export async function createPdf({ name,
 
   page.drawText('Invoice', { x: 50, y: 750, size: 20 });
   page.drawText(new Date(invoiceDate).toLocaleDateString(), {
-    x: 400,
-    y: 750,
+    x: 50,
+    y: 200,
     size: 15,
   });
 
    page.drawText(`Number, ${invoiceNumber}!`, {
-    x: 50,
-    y: 700,
-    size: 30,
+    x: 10,
+    y: 300,
+    size: 10,
   });
 
   page.drawText(`Hello, ${name}!`, {
-    x: 50,
-    y: 750,
-    size: 30,
+    x: 25,
+    y: 200,
+    size: 10,
   });
 
    page.drawText(`Address, ${address}!`, {
-    x: 50,
-    y: 700,
-    size: 30,
+    x: 15,
+    y: 150,
+    size: 15,
   });
 
   page.drawText(`Email: ${email}`, {
@@ -50,13 +50,13 @@ export async function createPdf({ name,
   });
 
    page.drawText(`Phone:, ${phone}!`, {
-    x: 50,
-    y: 600,
+    x: 30,
+    y: 380,
     size: 30,
   });
 
    page.drawText(`Bank name:, ${bankName}!`, {
-    x: 50,
+    x: 20,
     y: 750,
     size: 30,
   });
@@ -68,14 +68,14 @@ export async function createPdf({ name,
   });
 
    page.drawText(`Website:, ${website}!`, {
-    x: 50,
-    y: 700,
-    size: 30,
+    x: 16,
+    y: 100,
+    size: 5,
   });
 
    page.drawText(`Client name:, ${clientName}!`, {
-    x: 50,
-    y: 450,
+    x: 25,
+    y: 550,
     size: 30,
   });
 
