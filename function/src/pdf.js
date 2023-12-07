@@ -1,4 +1,4 @@
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { Buffer } from 'node:buffer';
 
 export async function createPdf({ name,
@@ -17,8 +17,19 @@ export async function createPdf({ name,
     list, }) {
   const document = await PDFDocument.create();
   const page = document.addPage([595.28, 841.89]); // A4 size
+  const { width, height } = page.getSize()
+  const fontSize = 30
+  const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
-  page.drawText('Invoice', { x: 50, y: 750, size: 20 });
+  page.drawText(`Hello, ${name}!`, {
+    x: 50,
+    y: height - 4 * fontSize,
+    size: fontSize,
+    font: timesRomanFont,
+    color: rgb(0, 0.53, 0.71),
+  });
+
+  // page.drawText('Invoice', { x: 50, y: 750, size: 20 });
   page.drawText(new Date(invoiceDate).toLocaleDateString(), {
     x: 60,
     y: 500,
@@ -28,12 +39,6 @@ export async function createPdf({ name,
    page.drawText(`Number, ${invoiceNumber}!`, {
     x: 10,
     y: 300,
-    size: 10,
-  });
-
-  page.drawText(`Hello, ${name}!`, {
-    x: 25,
-    y: 200,
     size: 10,
   });
 
