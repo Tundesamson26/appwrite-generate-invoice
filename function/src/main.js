@@ -3,7 +3,7 @@ import { createPdf } from './pdf.js';
 export default async ({ res, req, log, error }) => {
   const payload = req.body;
   
-  log(payload);
+  log(payload.list);
 
   // const payload = {
   //   name: "tunde",
