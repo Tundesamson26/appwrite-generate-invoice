@@ -14,7 +14,7 @@
 import { createPdf } from './pdf.js';
 
 export default async ({ res, req, log, error, data }) => {
-  const data = {
+  const payload = {
     name: "tunde",
     address: "nigeria",
     email: "abc@mail.com",
@@ -38,7 +38,7 @@ export default async ({ res, req, log, error, data }) => {
 
   // log(req.body)
 
-  const pdfBuffer = await createPdf(data);
+  const pdfBuffer = await createPdf(payload);
 
   log('PDF created.');
   
