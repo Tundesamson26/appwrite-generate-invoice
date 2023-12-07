@@ -25,7 +25,7 @@ export async function createPdf({ name,
     size: 15,
   });
 
-   page.drawText(`Nubmer, ${invoiceNumber}!`, {
+   page.drawText(`Number, ${invoiceNumber}!`, {
     x: 50,
     y: 700,
     size: 30,
@@ -43,7 +43,7 @@ export async function createPdf({ name,
     size: 30,
   });
 
-  page.drawText(`email: ${email}`, {
+  page.drawText(`Email: ${email}`, {
     x: 50,
     y: 650,
     size: 10,
@@ -82,7 +82,7 @@ export async function createPdf({ name,
    page.drawText(`Client address:, ${clientAddress}!`, {
     x: 50,
     y: 500,
-    size: 30,
+    size: 15,
   });
 
   page.drawText(`Total: $${notes}`, { x: 50, y: 600, size: 15 });
