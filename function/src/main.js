@@ -2,9 +2,6 @@ import { createPdf } from './pdf.js';
 
 export default async ({ res, req, log, error }) => {
   const payload =JSON.parse(req.body);
-  
-  log(typeof payload);
-
   // const payload = {
   //   name: "tunde",
   //   address: "nigeria",
