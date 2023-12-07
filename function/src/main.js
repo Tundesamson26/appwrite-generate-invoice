@@ -3,15 +3,21 @@ import { Client, Databases, ID } from "node-appwrite";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
+  // const pdfBuffer = await createPdf();
 
-  if (req.method === "POST") {
-    const payload = querystring.parse(req.body);
-    const pdfBuffer = await createPdf(payload);
-
-    log("PDF created.");
+  if (req.method == "GET") {
     return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
   }
 
+  if (req.method === "POST") {
+    const payload = querystring.parse(req.body);
+
+    const pdfBuffer = await createPdf(payload);
+
+    log("PDF created.");
+
+    return res.send("PDF created");
+  }
   // const payload = {
   //   name: "tunde",
   //   address: "nigeria",
