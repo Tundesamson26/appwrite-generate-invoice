@@ -1,7 +1,17 @@
-import { createPdf } from './pdf.js';
+import { createPdf } from "./pdf.js";
+import { Client, Databases, ID } from "node-appwrite";
+import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-  const payload =JSON.parse(req.body);
+
+  if (req.method === "POST") {
+    const payload = querystring.parse(req.body);
+    const pdfBuffer = await createPdf(payload);
+
+    log("PDF created.");
+    return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
+  }
+
   // const payload = {
   //   name: "tunde",
   //   address: "nigeria",
@@ -25,10 +35,4 @@ export default async ({ res, req, log, error }) => {
   // }
 
   // log(req.body)
-
-  const pdfBuffer = await createPdf(payload);
-
-  log('PDF created.');
-
-  return res.send(pdfBuffer, 200, { 'Content-Type': 'application/pdf' });
 };
