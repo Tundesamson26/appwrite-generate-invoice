@@ -37,7 +37,7 @@ export async function createPdf({ name,
   });
 
    page.drawText(`Number, ${invoiceNumber}!`, {
-    x: 10,
+    x: 60,
     y: 300,
     size: 10,
   });
