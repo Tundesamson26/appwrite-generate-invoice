@@ -20,9 +20,9 @@ export async function createPdf({ name,
 
   page.drawText('Invoice', { x: 50, y: 750, size: 20 });
   page.drawText(new Date(invoiceDate).toLocaleDateString(), {
-    x: 50,
-    y: 200,
-    size: 15,
+    x: 60,
+    y: 500,
+    size: 25,
   });
 
    page.drawText(`Number, ${invoiceNumber}!`, {
@@ -38,15 +38,15 @@ export async function createPdf({ name,
   });
 
    page.drawText(`Address, ${address}!`, {
-    x: 15,
-    y: 150,
+    x: 50,
+    y: 350,
     size: 15,
   });
 
   page.drawText(`Email: ${email}`, {
-    x: 50,
-    y: 650,
-    size: 10,
+     x: 30,
+    y: 350,
+    size: 20,
   });
 
    page.drawText(`Phone:, ${phone}!`, {
