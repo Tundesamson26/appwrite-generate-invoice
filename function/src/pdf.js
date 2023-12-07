@@ -16,7 +16,7 @@ export async function createPdf({ name,
     notes,
     list, }) {
   const pdfDoc = await PDFDocument.create();
-  const page = document.addPage([595.28, 841.89]); // A4 size
+  const page = pdfDoc.addPage([595.28, 841.89]); // A4 size
   const { width, height } = page.getSize()
   const fontSize = 30
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
