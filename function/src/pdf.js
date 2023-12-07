@@ -1,15 +1,34 @@
 import { PDFDocument } from 'pdf-lib';
 import { Buffer } from 'node:buffer';
 
-export async function createPdf({ id, date, name, items, total }) {
+export async function createPdf({ name,
+    address,
+    email,
+    phone,
+    bankName,
+    bankAccount,
+    website,
+    clientName,
+    clientAddress,
+    invoiceNumber,
+    invoiceDate,
+    dueDate,
+    notes,
+    list, }) {
   const document = await PDFDocument.create();
   const page = document.addPage([595.28, 841.89]); // A4 size
 
   page.drawText('Sample Invoice', { x: 50, y: 750, size: 20 });
-  page.drawText(new Date(date).toLocaleDateString(), {
+  page.drawText(new Date(invoiceDate).toLocaleDateString(), {
     x: 400,
     y: 750,
     size: 15,
+  });
+
+   page.drawText(`Hello, ${invoiceNumber}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
   });
 
   page.drawText(`Hello, ${name}!`, {
@@ -18,18 +37,60 @@ export async function createPdf({ id, date, name, items, total }) {
     size: 30,
   });
 
-  page.drawText(`Order ID: ${id}`, {
+   page.drawText(`Hello, ${address}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+  page.drawText(`Order ID: ${email}`, {
     x: 50,
     y: 650,
     size: 10,
   });
 
-  page.drawText(`Total: $${total}`, { x: 50, y: 600, size: 15 });
+   page.drawText(`Hello, ${phone}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
 
-  const orderList = items
+   page.drawText(`Hello, ${bankName}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+   page.drawText(`Hello, ${bankAccount}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+   page.drawText(`Hello, ${website}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+   page.drawText(`Hello, ${clientName}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+   page.drawText(`Hello, ${clientAddress}!`, {
+    x: 50,
+    y: 700,
+    size: 30,
+  });
+
+  page.drawText(`Total: $${notes}`, { x: 50, y: 600, size: 15 });
+
+  const orderList = list
     .map(
-      ({ description, quantity, cost }) =>
-        `${description} x ${quantity} = $${cost}`
+      ({ description, quantity, price, amount, }) =>
+        `${quantity} x ${price} = $${amount}`
     )
     .join('\n');
 
