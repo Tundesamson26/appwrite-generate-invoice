@@ -3,20 +3,26 @@ import { Client, Databases, ID } from "node-appwrite";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-  // const pdfBuffer = await createPdf();
 
-  if (req.method == "GET") {
-    return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
-  }
+  // if (req.method == "GET") {
+  //   return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
+  // }
 
-  if (req.method === "POST") {
+  if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
     const payload = querystring.parse(req.body);
 
     const pdfBuffer = await createPdf(payload);
 
-    log("PDF created.");
+    const client = new Client();
+    client
+      .setEndpoint('https://cloud.appwrite.io/v1')
+      .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
+      .setKey(process.env.APPWRITE_API_KEY);
 
-    return res.send("PDF created");
+    log("PDF created.");
+    return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
+
+    // return res.send("PDF created");
   }
   // const payload = {
   //   name: "tunde",
