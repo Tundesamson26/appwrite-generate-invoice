@@ -18,14 +18,14 @@ export async function createPdf({ name,
   const document = await PDFDocument.create();
   const page = document.addPage([595.28, 841.89]); // A4 size
 
-  page.drawText('Sample Invoice', { x: 50, y: 750, size: 20 });
+  page.drawText('Invoice', { x: 50, y: 750, size: 20 });
   page.drawText(new Date(invoiceDate).toLocaleDateString(), {
     x: 400,
     y: 750,
     size: 15,
   });
 
-   page.drawText(`Hello, ${invoiceNumber}!`, {
+   page.drawText(`Nubmer, ${invoiceNumber}!`, {
     x: 50,
     y: 700,
     size: 30,
@@ -33,55 +33,55 @@ export async function createPdf({ name,
 
   page.drawText(`Hello, ${name}!`, {
     x: 50,
-    y: 700,
+    y: 750,
     size: 30,
   });
 
-   page.drawText(`Hello, ${address}!`, {
+   page.drawText(`Address, ${address}!`, {
     x: 50,
     y: 700,
     size: 30,
   });
 
-  page.drawText(`Order ID: ${email}`, {
+  page.drawText(`email: ${email}`, {
     x: 50,
     y: 650,
     size: 10,
   });
 
-   page.drawText(`Hello, ${phone}!`, {
+   page.drawText(`Phone:, ${phone}!`, {
+    x: 50,
+    y: 600,
+    size: 30,
+  });
+
+   page.drawText(`Bank name:, ${bankName}!`, {
+    x: 50,
+    y: 750,
+    size: 30,
+  });
+
+   page.drawText(`Bank Account:, ${bankAccount}!`, {
     x: 50,
     y: 700,
     size: 30,
   });
 
-   page.drawText(`Hello, ${bankName}!`, {
+   page.drawText(`Website:, ${website}!`, {
     x: 50,
     y: 700,
     size: 30,
   });
 
-   page.drawText(`Hello, ${bankAccount}!`, {
+   page.drawText(`Client name:, ${clientName}!`, {
     x: 50,
-    y: 700,
+    y: 450,
     size: 30,
   });
 
-   page.drawText(`Hello, ${website}!`, {
+   page.drawText(`Client address:, ${clientAddress}!`, {
     x: 50,
-    y: 700,
-    size: 30,
-  });
-
-   page.drawText(`Hello, ${clientName}!`, {
-    x: 50,
-    y: 700,
-    size: 30,
-  });
-
-   page.drawText(`Hello, ${clientAddress}!`, {
-    x: 50,
-    y: 700,
+    y: 500,
     size: 30,
   });
 

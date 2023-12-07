@@ -31,8 +31,8 @@ export default async ({ res, req, log, error, data }) => {
     list: [{
       description: "item one",
       quantity: "4",
-      price: "$7",
-      amount: "$40"
+      price: "7",
+      amount: "40"
     }],
   }
 
