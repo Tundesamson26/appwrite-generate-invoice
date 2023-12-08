@@ -4,25 +4,35 @@ import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
   if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
-    const payload = querystring.parse(req.body);
+    try {
+      const payload = querystring.parse(req.body);
 
-    const pdfBuffer = await createPdf(payload);
-    
-    log(pdfBuffer.toString());
+      const pdfBuffer = await createPdf(payload);
 
+      log(payload);
 
-    // const client = new Client();
-    // client
-    //   .setEndpoint('https://cloud.appwrite.io/v1')
-    //   .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-    //   .setKey(process.env.APPWRITE_API_KEY);
+      const pdfBase64 = pdfBuffer.toString('base64');
 
-    // log("PDF created.");
-    // return res.send(pdfBuffer.toString(), 200, { "Content-Type": "application/pdf" });
-
-    // return res.send("PDF created");
+      return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+    } catch (error) {
+      console.error('Error processing the request:', error.message);
+      return res.status(500).send('Internal Server Error');
+    }
+  } else {
+    return res.status(400).send('Bad Request');
   }
-  // const payload = {
+};
+
+
+ // const client = new Client();
+      // client
+      //   .setEndpoint('https://cloud.appwrite.io/v1')
+      //   .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
+      //   .setKey(process.env.APPWRITE_API_KEY);
+
+      // log("PDF created.");
+
+ // const payload = {
   //   name: "tunde",
   //   address: "nigeria",
   //   email: "abc@mail.com",
@@ -45,4 +55,3 @@ export default async ({ res, req, log, error }) => {
   // }
 
   // log(req.body)
-};
