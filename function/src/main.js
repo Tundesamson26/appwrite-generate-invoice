@@ -3,16 +3,13 @@ import { Client, Databases, ID } from "node-appwrite";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-
-  // if (req.method == "GET") {
-  //   return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
-  // }
-
   if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
     const payload = querystring.parse(req.body);
-    log(payload)
 
     // const pdfBuffer = await createPdf(payload);
+    
+    log(payload.list);
+
 
     // const client = new Client();
     // client
