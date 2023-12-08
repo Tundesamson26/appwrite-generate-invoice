@@ -6,7 +6,7 @@ export default async ({ res, req, log, error }) => {
   if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
     const payload = querystring.parse(req.body);
 
-    // const pdfBuffer = await createPdf(payload);
+    const pdfBuffer = await createPdf(payload.toString());
     
     log(payload);
 
@@ -18,7 +18,7 @@ export default async ({ res, req, log, error }) => {
     //   .setKey(process.env.APPWRITE_API_KEY);
 
     // log("PDF created.");
-    // return res.send(pdfBuffer, 200, { "Content-Type": "application/pdf" });
+    // return res.send(pdfBuffer.toString(), 200, { "Content-Type": "application/pdf" });
 
     // return res.send("PDF created");
   }
