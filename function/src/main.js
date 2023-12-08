@@ -8,7 +8,7 @@ export default async ({ res, req, log, error }) => {
 
     // const pdfBuffer = await createPdf(payload);
     
-    log(payload.list);
+    log(payload);
 
 
     // const client = new Client();
