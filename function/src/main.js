@@ -16,10 +16,12 @@ export default async ({ res, req, log, error }) => {
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
     } catch (err) {
       error('Error processing the request:', err);
-      return res.status(500).send('Internal Server Error');
+      res.statusCode = 500;
+      return res.send('Internal Server Error');
     }
   } else {
-    return res.status(400).send('Bad Request');
+    res.statusCode = 400;
+    return res.send('Bad Request');
   }
 };
 
