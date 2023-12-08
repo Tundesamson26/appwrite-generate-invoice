@@ -14,8 +14,8 @@ export default async ({ res, req, log, error }) => {
       const pdfBase64 = pdfBuffer.toString('base64');
 
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (error) {
-      context.error('Error processing the request:', error.message);
+    } catch (err) {
+      error('Error processing the request:', err.message);
       return res.send('Internal Server Error');
     }
   } else {
