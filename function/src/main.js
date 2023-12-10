@@ -2,10 +2,17 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-  res.headers('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.headers('Access-Control-Allow-Methods', 'POST');
-  res.headers('Access-Control-Allow-Headers', 'Content-Type');
+   // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  if (req.method === 'OPTIONS') {
+    // Preflight request, respond successfully
+    res.statusCode = 200;
+    return res.end();
+  }
+  
   if (req.method === "POST") {
     try {
       const payload = querystring.parse(req.body);
