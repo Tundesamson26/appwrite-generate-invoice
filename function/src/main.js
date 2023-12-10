@@ -3,36 +3,33 @@ import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
    // Set CORS headers
-  res.headers('Access-Control-Allow-Origin', '*');
-  res.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
-  res.headers('Access-Control-Allow-Headers', 'Content-Type');
+  // res.headers('Access-Control-Allow-Origin', '*');
+  // res.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
+  // res.headers('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === 'OPTIONS') {
-    // Preflight request, respond successfully
-    res.statusCode = 200;
-    return res.end();
-  }
+log(req.method); 
   
-  if (req.method === "POST") {
-    try {
-      const payload = querystring.parse(req.body);
+  // if (req.method === "POST" && req.headers) {
+  //   try {
+  //     const payload = querystring.parse(req.body);
 
-      const pdfBuffer = await createPdf(payload);
+  //     const pdfBuffer = await createPdf(payload);
 
-      log(payload);
+  //     log(payload);
 
-      const pdfBase64 = pdfBuffer.toString('base64');
+  //     const pdfBase64 = pdfBuffer.toString('base64');
 
-      return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (err) {
-      error('Error processing the request:', err);
-      res.statusCode = 500;
-      return res.send('Internal Server Error');
-    }
-  } else {
-    res.statusCode = 400;
-    return res.send('Bad Request');
-  }
+  //     return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+  //   } catch (err) {
+  //     error('Error processing the request:', err);
+  //     res.statusCode = 500;
+  //     return res.send('Internal Server Error');
+  //   }
+  // } else {
+  //   res.statusCode = 400;
+  //   return res.send('Bad Request');
+  // }
+
 };
 
 
