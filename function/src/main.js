@@ -1,9 +1,12 @@
 import { createPdf } from "./pdf.js";
-import { Client, Databases, ID } from "node-appwrite";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-  if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+  res.headers('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.headers('Access-Control-Allow-Methods', 'POST');
+  res.headers('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === "POST") {
     try {
       const payload = querystring.parse(req.body);
 
