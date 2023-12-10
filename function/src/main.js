@@ -3,9 +3,9 @@ import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
    // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.headers('Access-Control-Allow-Origin', '*');
+  res.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
+  res.headers('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     // Preflight request, respond successfully
