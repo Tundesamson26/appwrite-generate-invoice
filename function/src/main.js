@@ -2,17 +2,8 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-   // Set CORS headers
-  // req.headers('Access-Control-Allow-Origin', '*');
-  // req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
-  // req.headers('Access-Control-Allow-Headers', 'Content-Type');
-
-  //  log(req.headers['access-control-allow-origin'] === '*'); 
-  //  return res.send(headers)
-  
-  if (req.method === "POST" && req.headers['content-type'] === 'application/json') {
-    try {
-      const payload = JSON.parse(req.body);
+  if (req.method === "POST" ) {
+    const payload = querystring.parse(req.body);
 
       const pdfBuffer = await createPdf(payload);
 
@@ -21,10 +12,6 @@ export default async ({ res, req, log, error }) => {
       const pdfBase64 = pdfBuffer.toString('base64');
 
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (err) {
-      error('Error processing the request:', err);
-      return res.send('Internal Server Error');
-    }
   } else {
     log(error)
     return res.send('Bad Request');
