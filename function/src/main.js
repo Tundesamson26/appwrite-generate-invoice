@@ -10,20 +10,22 @@ export default async ({ res, req, log, error }) => {
 // log(req.headers); 
   
   if (req.method === "POST" && req.headers['Access-Control-Allow-Origin', '*']) {
-    try {
-      const payload = querystring.parse(req.body);
+    log(req.headers)
+    return res.send('sent')
+    // try {
+    //   const payload = querystring.parse(req.body);
 
-      const pdfBuffer = await createPdf(payload);
+    //   const pdfBuffer = await createPdf(payload);
 
-      log(payload);
+    //   log(payload);
 
-      const pdfBase64 = pdfBuffer.toString('base64');
+    //   const pdfBase64 = pdfBuffer.toString('base64');
 
-      return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (err) {
-      error('Error processing the request:', err);
-      return res.send('Internal Server Error');
-    }
+    //   return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+    // } catch (err) {
+    //   error('Error processing the request:', err);
+    //   return res.send('Internal Server Error');
+    // }
   } else {
     log(error)
     return res.send('Bad Request');
