@@ -8,9 +8,9 @@ export default async ({ res, req, log, error }) => {
 
       log( Object.keys(payload).join(" "));
 
-      const pdfBuffer = await createPdf(payload);
+       log(typeof payload['name']);
 
-      log(typeof payload['name']);
+      const pdfBuffer = await createPdf(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
