@@ -7,7 +7,7 @@ export default async ({ res, req, log, error }) => {
   // res.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
   // res.headers('Access-Control-Allow-Headers', 'Content-Type');
 
-log(req.method); 
+log(req.headers); 
   
   // if (req.method === "POST" && req.headers) {
   //   try {
