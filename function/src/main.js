@@ -15,7 +15,7 @@ export default async ({ res, req, log, error }) => {
 
       const pdfBuffer = await createPdf(payload);
 
-      log(payload.body);
+      log(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
@@ -25,6 +25,7 @@ export default async ({ res, req, log, error }) => {
       return res.send('Internal Server Error');
     }
   } else {
+    log(error)
     return res.send('Bad Request');
   }
 
