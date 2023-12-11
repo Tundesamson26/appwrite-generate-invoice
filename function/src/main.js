@@ -7,30 +7,28 @@ export default async ({ res, req, log, error }) => {
   // req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
   // req.headers('Access-Control-Allow-Headers', 'Content-Type');
 
-   
+   log(req.headers['access-control-allow-origin'] === '*'); 
+   return res.send(headers)
   
-  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*') {
-    try {
+  // if (req.method === "POST" && req.headers['Access-Control-Allow-Origin'] === '*') {
+  //   try {
+  //     const payload = querystring.parse(req.body);
 
-      log(req.headers['access-control-allow-origin'] === '*'); 
-       return res.send('correct')
-      // const payload = querystring.parse(req.body);
+  //     const pdfBuffer = await createPdf(payload);
 
-      // const pdfBuffer = await createPdf(payload);
+  //     log(payload);
 
-      // log(payload);
+  //     const pdfBase64 = pdfBuffer.toString('base64');
 
-      // const pdfBase64 = pdfBuffer.toString('base64');
-
-      // return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (err) {
-      error('Error processing the request:', err);
-      return res.send('Internal Server Error');
-    }
-  } else {
-    log(error)
-    return res.send('Bad Request');
-  }
+  //     return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+  //   } catch (err) {
+  //     error('Error processing the request:', err);
+  //     return res.send('Internal Server Error');
+  //   }
+  // } else {
+  //   log(error)
+  //   return res.send('Bad Request');
+  // }
 
 };
 
