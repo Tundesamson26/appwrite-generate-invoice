@@ -7,7 +7,7 @@ export default async ({ res, req, log, error }) => {
 
       const payload = req.body;
 
-      log( Object.keys(payload).join(" "));
+      log(payload);
 
        log(typeof payload.name);
 
