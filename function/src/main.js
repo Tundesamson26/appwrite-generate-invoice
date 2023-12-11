@@ -14,8 +14,8 @@ export default async ({ res, req, log, error }) => {
 
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
     } catch (err) {
-      error('Error processing the request:', err);
-      return res.send('Internal Server Error ' + err.body);
+      error('Error processing the request:', err.message);
+      return res.send('Internal Server Error ' + err.message);
     }
   } else {
     log(error)
