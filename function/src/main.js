@@ -25,7 +25,6 @@ export default async ({ res, req, log, error }) => {
       return res.send('Internal Server Error');
     }
   } else {
-    log(error)
     return res.send(error);
   }
 
