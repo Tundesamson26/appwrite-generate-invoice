@@ -6,9 +6,9 @@ export default async ({ res, req, log, error }) => {
     try {
       const payload = querystring.parse(req.body);
 
-      const pdfBuffer = await createPdf(payload);
-
       log(payload);
+
+      const pdfBuffer = await createPdf(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
