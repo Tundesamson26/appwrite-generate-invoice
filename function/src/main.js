@@ -10,7 +10,7 @@ export default async ({ res, req, log, error }) => {
   //  log(req.headers['access-control-allow-origin'] === '*'); 
   //  return res.send(headers)
   
-  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*') {
+  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*' && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
     try {
       const payload = querystring.parse(req.body);
 
