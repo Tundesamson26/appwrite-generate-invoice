@@ -26,7 +26,7 @@ export default async ({ res, req, log, error }) => {
     }
   } else {
     log(error)
-    return res.send('Bad Request', error);
+    return res.send('Bad Request');
   }
 
 };
