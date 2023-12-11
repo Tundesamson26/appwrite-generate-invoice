@@ -3,9 +3,9 @@ import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
    // Set CORS headers
-  req.headers('Access-Control-Allow-Origin', '*');
-  req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
-  req.headers('Access-Control-Allow-Headers', 'Content-Type');
+  // req.headers('Access-Control-Allow-Origin', '*');
+  // req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
+  // req.headers('Access-Control-Allow-Headers', 'Content-Type');
 
   //  log(req.headers['access-control-allow-origin'] === '*'); 
   //  return res.send(headers)
