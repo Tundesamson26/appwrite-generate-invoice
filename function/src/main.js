@@ -9,7 +9,7 @@ export default async ({ res, req, log, error }) => {
 
 // log(req.headers); 
   
-  if (req.method === "POST" && req.headers['Access-Control-Allow-Origin', '*']) {
+  if (req.method === "POST" && req.headers['Access-Control-Allow-Origin'] === '*') {
     log(req.headers)
     return res.send('sent')
     // try {
