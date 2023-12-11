@@ -16,7 +16,7 @@ export default async ({ res, req, log, error }) => {
 
       const pdfBuffer = await createPdf(payload);
 
-      log(req.headers['access-control-allow-origin'] === '*');
+      log(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
