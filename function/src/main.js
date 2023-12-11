@@ -2,8 +2,10 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-  if (req.method === "POST" ) {
-    const payload = querystring.parse(req.body);
+
+  if (req.method === "POST") {
+    try {
+      const payload = querystring.parse(req.body);
 
       const pdfBuffer = await createPdf(payload);
 
@@ -12,6 +14,10 @@ export default async ({ res, req, log, error }) => {
       const pdfBase64 = pdfBuffer.toString('base64');
 
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+    } catch (err) {
+      error('Error processing the request:', err);
+      return res.send('Internal Server Error');
+    }
   } else {
     log(error)
     return res.send('Bad Request');
