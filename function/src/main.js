@@ -12,7 +12,7 @@ export default async ({ res, req, log, error }) => {
   
   if (req.method === "POST" && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
     try {
-      const payload = querystring.parse(req.body);
+      const payload = JSON.parse(req.body);
 
       const pdfBuffer = await createPdf(payload);
 
