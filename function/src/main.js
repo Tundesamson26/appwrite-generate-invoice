@@ -1,3 +1,4 @@
+import { type } from "node:os";
 import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
@@ -6,7 +7,7 @@ export default async ({ res, req, log, error }) => {
     try {
       const payload = querystring.parse(req.body);
 
-      log(JSON.stringify(payload));
+      log(typeof payload.list);
 
       const pdfBuffer = await createPdf(payload);
 
