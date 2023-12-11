@@ -1,20 +1,21 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { Buffer } from 'node:buffer';
 
-export async function createPdf({ name,
-    address,
-    email,
-    phone,
-    bankName,
-    bankAccount,
-    website,
-    clientName,
-    clientAddress,
-    invoiceNumber,
-    invoiceDate,
-    dueDate,
-    notes,
-    list, }) {
+export async function createPdf({
+  name,
+  address,
+  email,
+  phone,
+  bankName,
+  bankAccount,
+  website,
+  clientName,
+  clientAddress,
+  invoiceNumber,
+  invoiceDate,
+  dueDate,
+  notes,
+  list, }) {
   const pdfDoc = await PDFDocument.create();
   const page = pdfDoc.addPage([595.28, 841.89]); // A4 size
   const { width, height } = page.getSize()
@@ -36,55 +37,61 @@ export async function createPdf({ name,
     size: 25,
   });
 
-   page.drawText(`Number, ${invoiceNumber}!`, {
+  page.drawText(new Date(dueDate).toLocaleDateString(), {
+    x: 30,
+    y: 400,
+    size: 25,
+  });
+
+  page.drawText(`Number, ${invoiceNumber}!`, {
     x: 60,
     y: 300,
     size: 10,
   });
 
-   page.drawText(`Address, ${address}!`, {
+  page.drawText(`Address, ${address}!`, {
     x: 50,
     y: 350,
     size: 15,
   });
 
   page.drawText(`Email: ${email}`, {
-     x: 30,
+    x: 30,
     y: 350,
     size: 20,
   });
 
-   page.drawText(`Phone:, ${phone}!`, {
+  page.drawText(`Phone:, ${phone}!`, {
     x: 30,
     y: 380,
     size: 30,
   });
 
-   page.drawText(`Bank name:, ${bankName}!`, {
+  page.drawText(`Bank name:, ${bankName}!`, {
     x: 20,
     y: 750,
     size: 30,
   });
 
-   page.drawText(`Bank Account:, ${bankAccount}!`, {
+  page.drawText(`Bank Account:, ${bankAccount}!`, {
     x: 50,
     y: 700,
     size: 30,
   });
 
-   page.drawText(`Website:, ${website}!`, {
+  page.drawText(`Website:, ${website}!`, {
     x: 16,
     y: 100,
     size: 5,
   });
 
-   page.drawText(`Client name:, ${clientName}!`, {
+  page.drawText(`Client name:, ${clientName}!`, {
     x: 25,
     y: 550,
     size: 30,
   });
 
-   page.drawText(`Client address:, ${clientAddress}!`, {
+  page.drawText(`Client address:, ${clientAddress}!`, {
     x: 50,
     y: 500,
     size: 15,
@@ -95,7 +102,7 @@ export async function createPdf({ name,
   const orderList = list
     .map(
       ({ description, quantity, price, amount, }) =>
-        `${quantity} x ${price} = $${amount}`
+        `${description} + '' + ${quantity} x ${price} = $${amount}`
     )
     .join('\n');
 
