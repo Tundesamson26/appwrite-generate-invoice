@@ -7,7 +7,7 @@ export default async ({ res, req, log, error }) => {
     try {
       const payload = querystring.parse(req.body);
 
-      log( Object.keys(payload).join(' '));
+      log( Object.keys(payload));
 
       const pdfBuffer = await createPdf(payload);
 
