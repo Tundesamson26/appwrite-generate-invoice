@@ -3,20 +3,20 @@ import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
    // Set CORS headers
-  // req.headers('Access-Control-Allow-Origin', '*');
-  // req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
-  // req.headers('Access-Control-Allow-Headers', 'Content-Type');
+  req.headers('Access-Control-Allow-Origin', '*');
+  req.headers('Access-Control-Allow-Methods', 'OPTIONS, POST');
+  req.headers('Access-Control-Allow-Headers', 'Content-Type');
 
   //  log(req.headers['access-control-allow-origin'] === '*'); 
   //  return res.send(headers)
   
-  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*' && req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+  if (req.method === "POST" && req.headers['content-type'] === 'application/json') {
     try {
       const payload = querystring.parse(req.body);
 
       const pdfBuffer = await createPdf(payload);
 
-      log(payload.name);
+      log(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
