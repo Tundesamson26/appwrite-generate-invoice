@@ -17,7 +17,7 @@ export default async ({ res, req, log, error }) => {
 
       log(req.headers);
 
-      log(payload);
+      // log(payload);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
