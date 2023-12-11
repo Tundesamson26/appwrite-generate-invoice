@@ -15,18 +15,16 @@ export default async ({ res, req, log, error }) => {
 
       const pdfBuffer = await createPdf(payload);
 
-      log(payload);
+      log(payload.body);
 
       const pdfBase64 = pdfBuffer.toString('base64');
 
       return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
     } catch (err) {
       error('Error processing the request:', err);
-      res.statusCode = 500;
       return res.send('Internal Server Error');
     }
   } else {
-    res.statusCode = 400;
     return res.send('Bad Request');
   }
 
