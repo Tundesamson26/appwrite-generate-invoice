@@ -4,11 +4,11 @@ import querystring from "node:querystring";
 export default async ({ res, req, log, error }) => {
   if (req.method === "POST") {
     try {
-      const payload = querystring.parse(req.body);
+      const payload = JSON.parse(req.body);
 
       log( Object.keys(payload).join(" "));
 
-       log(typeof payload['name']);
+       log(typeof payload.name);
 
       const pdfBuffer = await createPdf(payload);
 
