@@ -5,7 +5,7 @@ export default async ({ res, req, log, error }) => {
   if (req.method === "POST") {
     try {
 
-      const payload = req.body;
+      const payload = JSON.parse(req.body);
 
       log(payload);
       log(payload['name'])
