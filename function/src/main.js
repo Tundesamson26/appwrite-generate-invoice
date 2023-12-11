@@ -4,7 +4,8 @@ import querystring from "node:querystring";
 export default async ({ res, req, log, error }) => {
   if (req.method === "POST") {
     try {
-      const payload = JSON.parse(req.body);
+
+      const payload = req.body;
 
       log( Object.keys(payload).join(" "));
 
