@@ -359,9 +359,9 @@
   integrity sha512-kb4/auKXkYKqlUYTE8s40FcJIj5soOyRLHKd4ugR0dCq0G2EfcF54eYcfQiGkHzjidZ40daB4ulsFdtqNKZtBg==
 
 "@sveltejs/adapter-netlify@^1.0.0-next.88":
-  version "1.0.0-next.88"
-  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-netlify/-/adapter-netlify-1.0.0-next.88.tgz#43dc8f0eccd675bfde903a4fdf8646ae713d90e0"
-  integrity sha512-vUuG1++iQJvNPR6E9S9eYSRRudQnrDHEyLzV9c4dWQjQ4u12papwag4EAqTSxXxWiE4d1MEtH0p0p25W55uKNQ==
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sveltejs/adapter-netlify/-/adapter-netlify-1.0.5.tgz#4d67b2a00c7f5322e265c968f78e967fb1175ce5"
+  integrity sha512-CQpSf2y29+DdaSELLWb4P5ewWSPUFRfJn2DwtiDZ+YOiIVhUk0caudFZoscH1GAP/sFrJekIMtawP542BjWA1g==
   dependencies:
     "@iarna/toml" "^2.2.5"
     esbuild "^0.16.3"
@@ -1254,9 +1254,9 @@ uuid@^9.0.1:
   integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 vite@^5.0.0:
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.7.tgz#ad081d735f6769f76b556818500bdafb72c3fe93"
-  integrity sha512-B4T4rJCDPihrQo2B+h1MbeGL/k/GMAHzhQ8S0LjQ142s6/+l3hHTT095ORvsshj4QCkoWu3Xtmob5mazvakaOw==
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.8.tgz#070383dcb4d4f12adde9c119b8cca0f40bf906e9"
+  integrity sha512-jYMALd8aeqR3yS9xlHd0OzQJndS9fH5ylVgWdB+pxTwxLKdO1pgC5Dlb398BUxpfaBxa4M9oT7j1g503Gaj5IQ==
   dependencies:
     esbuild "^0.19.3"
     postcss "^8.4.32"
