@@ -2,30 +2,32 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
+
+  return res.send("we are live")
   // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // && req.headers['access-control-allow-origin'] === '*'
-  if (req.method === "POST" ) {
-    try {
-      const payload = JSON.parse(req.body);
+  // if (req.method === "POST" ) {
+  //   try {
+  //     const payload = JSON.parse(req.body);
 
-      log(payload);
-      log(payload.name)
-      log(typeof payload);
+  //     log(payload);
+  //     log(payload.name)
+  //     log(typeof payload);
 
-      const pdfBuffer = await createPdf(payload);
+  //     const pdfBuffer = await createPdf(payload);
 
-      const pdfBase64 = pdfBuffer.toString('base64');
+  //     const pdfBase64 = pdfBuffer.toString('base64');
 
-      return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
-    } catch (err) {
-      error('Error processing the request:', err.message);
-      return res.send('Internal Server Error ' + err.message);
-    }
-  } else {
-    log(error)
-    return res.send('Bad Request');
-  }
+  //     return res.send(pdfBase64, 200, { "Content-Type": "application/pdf" });
+  //   } catch (err) {
+  //     error('Error processing the request:', err.message);
+  //     return res.send('Internal Server Error ' + err.message);
+  //   }
+  // } else {
+  //   log(error)
+  //   return res.send('Bad Request');
+  // }
 
 };
 
