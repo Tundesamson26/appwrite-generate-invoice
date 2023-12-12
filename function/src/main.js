@@ -4,7 +4,7 @@ import querystring from "node:querystring";
 export default async ({ res, req, log, error }) => {
   // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  if (req.method === "POST") {
+  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*') {
     try {
       const payload = JSON.parse(req.body);
 
