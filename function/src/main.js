@@ -2,16 +2,15 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-    // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  if (req.method === "POST") {
+  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*') {
     try {
-
       const payload = JSON.parse(req.body);
 
       log(payload);
       log(payload['name'])
-       log(typeof payload);
+      log(typeof payload);
 
       const pdfBuffer = await createPdf(payload);
 
@@ -30,34 +29,34 @@ export default async ({ res, req, log, error }) => {
 };
 
 
- // const client = new Client();
-      // client
-      //   .setEndpoint('https://cloud.appwrite.io/v1')
-      //   .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
-      //   .setKey(process.env.APPWRITE_API_KEY);
+// const client = new Client();
+// client
+//   .setEndpoint('https://cloud.appwrite.io/v1')
+//   .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
+//   .setKey(process.env.APPWRITE_API_KEY);
 
-      // log("PDF created.");
+// log("PDF created.");
 
- // const payload = {
-  //   name: "tunde",
-  //   address: "nigeria",
-  //   email: "abc@mail.com",
-  //   phone: "103839210",
-  //   bankName: "wellsfargo",
-  //   bankAccount: "0165691580",
-  //   website: "www.appwrite.io",
-  //   clientName: "hackmamba",
-  //   clientAddress: "usa",
-  //   invoiceNumber: "011",
-  //   invoiceDate: "01/12/23",
-  //   dueDate: "10/12/2023",
-  //   notes: "additional note",
-  //   list: [{
-  //     description: "item one",
-  //     quantity: "4",
-  //     price: "7",
-  //     amount: "40"
-  //   }],
-  // }
+// const payload = {
+//   name: "tunde",
+//   address: "nigeria",
+//   email: "abc@mail.com",
+//   phone: "103839210",
+//   bankName: "wellsfargo",
+//   bankAccount: "0165691580",
+//   website: "www.appwrite.io",
+//   clientName: "hackmamba",
+//   clientAddress: "usa",
+//   invoiceNumber: "011",
+//   invoiceDate: "01/12/23",
+//   dueDate: "10/12/2023",
+//   notes: "additional note",
+//   list: [{
+//     description: "item one",
+//     quantity: "4",
+//     price: "7",
+//     amount: "40"
+//   }],
+// }
 
-  // log(req.body)
+// log(req.body)
