@@ -24,15 +24,15 @@ export async function createPdf({
   const padding = 20; // Padding for text
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
   // Function to calculate centered x-position
-const calculateCenteredX = (text, width) => (width - timesRomanFont.widthOfTextAtSize(text, fontSize + 10)) / 2;
+  const calculateCenteredX = (text, width) => (width - timesRomanFont.widthOfTextAtSize(text, fontSize + 10)) / 2;
 
- page.drawText('Invoice', {
-  x: calculateCenteredX('Invoice', width) + padding,
-  y: height - fontSize,
-  size: fontSize + 10,
-  font: timesRomanFont,
-  color: rgb(0, 0.53, 0.71),
-});
+  page.drawText('Invoice', {
+    x: calculateCenteredX('Invoice', width) + padding,
+    y: height - fontSize,
+    size: fontSize + 10,
+    font: timesRomanFont,
+    color: rgb(0, 0.53, 0.71),
+  });
 
   page.drawText(`Invoice Date: ${new Date(invoiceDate).toLocaleDateString()}`, {
     x: 50,
@@ -110,18 +110,19 @@ const calculateCenteredX = (text, width) => (width - timesRomanFont.widthOfTextA
   const startY = height - 18 * fontSize;
   const lineItemSpacing = 1.5 * fontSize;
   page.drawText('Description     Quantity     Price     Amount', {
-    x: 50,
+    x: calculateCenteredX('Description     Quantity     Price     Amount', width) + padding,
     y: startY,
     size: fontSize,
   });
 
   list.forEach(({ description, quantity, price, amount }, index) => {
     const y = startY - (index + 1) * lineItemSpacing;
-    const lineItemText = `${description.padEnd(25)} ${quantity.toString().padEnd(10)} $${price.toString().padEnd(10)} $${amount.toString()}`;
-    page.drawText(lineItemText, { x: padding, y, size: fontSize });
+    const lineItemText = `${description}     ${quantity}     $${price}     $${amount}`;
+    page.drawText(lineItemText, { x: calculateCenteredX(lineItemText, width) + padding, y, size: fontSize });
   });
 
-  page.drawText(`Total: $${notes}`, {
+
+  page.drawText(`Additional note: ${notes}`, {
     x: 50,
     y: startY - (list.length + 3) * lineItemSpacing,
     size: fontSize + 2,

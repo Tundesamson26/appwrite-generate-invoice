@@ -1,7 +1,6 @@
 import { createPdf } from "./pdf.js";
 
 export default async ({ res, req, log, error }) => {
-
   if (req.method === "POST") {
     try {
       const payload = (req.body.data);

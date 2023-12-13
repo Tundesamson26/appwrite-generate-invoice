@@ -9,7 +9,7 @@
   import TableForm from "./components/TableForm.svelte";
   import { writable } from "svelte/store";
 
-  import { Account, Client, Functions } from "appwrite";
+  import { Client, Functions } from "appwrite";
 
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
