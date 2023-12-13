@@ -71,12 +71,12 @@
     };
 
     try {
-      await axios.post("https://656f5d3f82d7cb3e56db.appwrite.global/", data, {
+      await axios.post("https://655f28d1449b15f23a3a.appwrite.global/", data, {
         headers: {
-          "content-type": "application/json",
-          "accept": "*.*",
-          "access-control-allow-origin": "*",
-          "access-control-allow-methods":
+          "Content-Type": "application/json",
+          "Accept": "*.*",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         },
       })
