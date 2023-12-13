@@ -12,6 +12,16 @@
   import TableForm from "./components/TableForm.svelte";
   import { writable } from "svelte/store";
 
+  import { Account, Client, Functions } from "appwrite";
+
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject("invoice-generator-id");
+
+  const account = new Account(client);
+
+  const functions = new Functions(client);
+
   const name = writable("");
   const address = writable("");
   const email = writable("");
@@ -61,7 +71,7 @@
     };
 
     try {
-      await axios.post("https://655f28d1449b15f23a3a.appwrite.global/", data, {
+      await axios.post("https://656f5d3f82d7cb3e56db.appwrite.global/", data, {
         headers: {
           "content-type": "application/json",
           "accept": "*.*",
@@ -69,7 +79,19 @@
           "access-control-allow-methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         },
-      });
+      })
+      // await functions.createExecution(
+      //   "pdf-invoice-id",
+      //   JSON.stringify({
+      //     data
+      //   }),
+      //   false,
+      //   "/https://655f28d1449b15f23a3a.appwrite.global/",
+      //   "POST",
+      //   {
+      //     "Content-Type": "application/json",
+      //   }
+      // );
       alert("successful");
     } catch (error) {
       console.error("Error:", error.message);
