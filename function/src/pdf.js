@@ -25,9 +25,9 @@ export async function createPdf({
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
   page.drawText('Invoice', {
-    x: padding,
+    x: 50,
     y: height - fontSize,
-    size: fontSize + 10,
+    size: fontSize + 20,
     font: timesRomanFont,
     color: rgb(0, 0.53, 0.71),
   });
