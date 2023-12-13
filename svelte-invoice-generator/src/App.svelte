@@ -1,7 +1,4 @@
 <script>
-  import { onMount } from "svelte";
-  import axios from "axios";
-
   import ClientDetails from "./components/ClientDetails.svelte";
   import Dates from "./components/Dates.svelte";
   import Footer from "./components/Footer.svelte";
@@ -17,8 +14,6 @@
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject("invoice-generator-id");
-
-  const account = new Account(client);
 
   const functions = new Functions(client);
 
@@ -71,19 +66,10 @@
     };
 
     try {
-      // await axios.post("https://655f28d1449b15f23a3a.appwrite.global/", data, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Accept": "*.*",
-      //     "Access-Control-Allow-Origin": "*",
-      //     "Access-Control-Allow-Methods":
-      //       "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-      //   },
-      // })
-      await functions.createExecution(
+      let response = await functions.createExecution(
         "pdf-invoice-id",
         JSON.stringify({
-          data
+          data,
         }),
         false,
         "/https://655f28d1449b15f23a3a.appwrite.global/",
@@ -92,16 +78,35 @@
           "Content-Type": "application/json",
         }
       );
-      alert("successful");
+      let pdfString = response.responseBody;
+      let blob = b64toBlob(pdfString, "application/pdf");
+      const blobUrl = URL.createObjectURL(blob);
+      console.log(blobUrl);
+      window.open(blobUrl);
     } catch (error) {
       console.error("Error:", error.message);
     }
   };
 
-  // Optionally, you can use onMount to set up any initial conditions
-  onMount(() => {
-    // You can add any initialization logic here
-  });
+  const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  };
 </script>
 
 <main
