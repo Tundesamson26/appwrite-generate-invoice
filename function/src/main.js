@@ -7,7 +7,7 @@ export default async ({ res, req, log, error }) => {
   // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // && req.headers['access-control-allow-origin'] === '*'
-  if (req.method === "POST" && req.headers['access-control-allow-origin'] === '*') {
+  if (req.method === "POST" ) {
     try {
       const payload = JSON.parse(req.body);
 
