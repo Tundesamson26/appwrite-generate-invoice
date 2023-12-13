@@ -23,14 +23,16 @@ export async function createPdf({
   const fontSize = 12;
   const padding = 20; // Padding for text
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+  // Function to calculate centered x-position
+const calculateCenteredX = (text, width) => (width - timesRomanFont.widthOfTextAtSize(text, fontSize + 10)) / 2;
 
-  page.drawText('Invoice', {
-    x: 50,
-    y: height - fontSize,
-    size: fontSize + 20,
-    font: timesRomanFont,
-    color: rgb(0, 0.53, 0.71),
-  });
+ page.drawText('Invoice', {
+  x: calculateCenteredX('Invoice', width) + padding,
+  y: height - fontSize,
+  size: fontSize + 10,
+  font: timesRomanFont,
+  color: rgb(0, 0.53, 0.71),
+});
 
   page.drawText(`Invoice Date: ${new Date(invoiceDate).toLocaleDateString()}`, {
     x: 50,
