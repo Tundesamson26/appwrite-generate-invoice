@@ -8,23 +8,7 @@ export default async ({ res, req, log, error }) => {
   // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   // && req.headers['Access-Control-Allow-Origin'] === '*'
   // && req.headers['Access-Control-Allow-Origin'] === 'http://localhost:5173/'
-   
-  if (req.method === 'OPTIONS') {
-    // Set the appropriate headers for CORS preflight
-    res.headers('Access-Control-Allow-Origin', 'http://localhost:5173');
-    res.headers('Access-Control-Allow-Methods', 'POST');
-    res.headers('Access-Control-Allow-Headers', 'Content-Type');
-    // Return early with 204 No Content
-    return res.send(null, 204);
-  }
-
   if (req.method === "POST") {
-    const clientOrigin = req.headers['origin'];
-
-    // Set the appropriate headers for CORS
-    res.headers('Access-Control-Allow-Origin', clientOrigin);
-    res.headers('Access-Control-Allow-Methods', 'POST');
-    res.headers('Access-Control-Allow-Headers', 'Content-Type');
     try {
       const payload = JSON.parse(req.body);
 
