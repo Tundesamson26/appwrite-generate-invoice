@@ -13,8 +13,10 @@ export default async ({ res, req, log, error }) => {
       const payload = (req.body);
 
       log(payload);
-      log(payload.name)
+      log(payload.data)
       log(typeof payload);
+      log(payload.data.list)
+      log(typeof payload.data.list)
 
       const pdfBuffer = await createPdf(payload);
 
