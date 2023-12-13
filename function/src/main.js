@@ -2,14 +2,9 @@ import { createPdf } from "./pdf.js";
 import querystring from "node:querystring";
 
 export default async ({ res, req, log, error }) => {
-
-  // return res.send("we are live")
-  // res.headers("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  // res.headers("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  // && req.headers['access-control-allow-origin'] === '*'
-  if (req.method === "POST" ) {
+  if (req.method === "POST") {
     try {
-      const payload = JSON.parse(req.body);
+      const payload = querystring.parse(req.body);
 
       log(payload);
       log(payload.name)

@@ -71,27 +71,27 @@
     };
 
     try {
-      await axios.post("https://655f28d1449b15f23a3a.appwrite.global/", data, {
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "*.*",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods":
-            "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        },
-      })
-      // await functions.createExecution(
-      //   "pdf-invoice-id",
-      //   JSON.stringify({
-      //     data
-      //   }),
-      //   false,
-      //   "/https://655f28d1449b15f23a3a.appwrite.global/",
-      //   "POST",
-      //   {
+      // await axios.post("https://655f28d1449b15f23a3a.appwrite.global/", data, {
+      //   headers: {
       //     "Content-Type": "application/json",
-      //   }
-      // );
+      //     "Accept": "*.*",
+      //     "Access-Control-Allow-Origin": "*",
+      //     "Access-Control-Allow-Methods":
+      //       "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      //   },
+      // })
+      await functions.createExecution(
+        "pdf-invoice-id",
+        JSON.stringify({
+          data
+        }),
+        false,
+        "/https://655f28d1449b15f23a3a.appwrite.global/",
+        "POST",
+        {
+          "Content-Type": "application/json",
+        }
+      );
       alert("successful");
     } catch (error) {
       console.error("Error:", error.message);
