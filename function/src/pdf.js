@@ -21,10 +21,11 @@ export async function createPdf({
   const page = pdfDoc.addPage([595.28, 841.89]); // A4 size
   const { width, height } = page.getSize();
   const fontSize = 12;
+  const padding = 20; // Padding for text
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
 
   page.drawText('Invoice', {
-    x: 50,
+    x: padding,
     y: height - fontSize,
     size: fontSize + 10,
     font: timesRomanFont,
@@ -114,8 +115,8 @@ export async function createPdf({
 
   list.forEach(({ description, quantity, price, amount }, index) => {
     const y = startY - (index + 1) * lineItemSpacing;
-    const lineItemText = `${description}     ${quantity}     $${price}     $${amount}`;
-    page.drawText(lineItemText, { x: 50, y, size: fontSize });
+    const lineItemText = `${description.padEnd(25)} ${quantity.toString().padEnd(10)} $${price.toString().padEnd(10)} $${amount.toString()}`;
+    page.drawText(lineItemText, { x: padding, y, size: fontSize });
   });
 
   page.drawText(`Total: $${notes}`, {
