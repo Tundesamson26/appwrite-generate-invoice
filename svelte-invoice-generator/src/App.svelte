@@ -75,7 +75,7 @@
         headers: {
           "Content-Type": "application/json",
           "Accept": "*.*",
-          "Access-Control-Allow-Origin": "https://655f28d1449b15f23a3a.appwrite.global/",
+          "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods":
             "GET,PUT,POST,DELETE,PATCH,OPTIONS",
         },
