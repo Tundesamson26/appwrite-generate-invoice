@@ -10,14 +10,11 @@ export default async ({ res, req, log, error }) => {
   // && req.headers['Access-Control-Allow-Origin'] === 'http://localhost:5173/'
   if (req.method === "POST") {
     try {
+      const payload = (req.body);
+
       log(payload);
-
+      log(payload.name)
       log(typeof payload);
-
-      const payload = JSON.parse(req.body.body);
-
-      log(payload.name);
-      
 
       const pdfBuffer = await createPdf(payload);
 
