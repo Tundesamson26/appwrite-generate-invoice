@@ -11,10 +11,13 @@ export default async ({ res, req, log, error }) => {
   if (req.method === "POST") {
     try {
       log(payload);
+
+      log(typeof payload);
+
       const payload = JSON.parse(req.body.body);
 
-      log(payload.name)
-      log(typeof payload);
+      log(payload.name);
+      
 
       const pdfBuffer = await createPdf(payload);
 
